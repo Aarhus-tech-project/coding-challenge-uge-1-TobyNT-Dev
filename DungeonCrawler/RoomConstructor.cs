@@ -1,14 +1,15 @@
 ﻿namespace DungeonCrawler
 {
     //Constructor for the room data
-    public class Room(int roomW, int roomH, int offsetX, int offsetZ, int roomPosition)
+    public class Room(int _roomW, int _roomH, int _offsetX, int _offsetZ, int _gridPosX, int _gridPosZ)
     {
-        private int _roomPosition = roomPosition;
+        public int roomW = _roomW;
+        public int roomH = _roomH;
 
-        private int _roomW = roomW;
-        private int _roomH = roomH;
+        public int offsetX = _offsetX;
+        public int offsetZ = _offsetZ;
 
-        private int _offsetX = offsetX;
-        private int _offsetZ = offsetZ;
+        public int gridPosX = _gridPosX;
+        public int gridPosZ = _gridPosZ;
     }
 }
