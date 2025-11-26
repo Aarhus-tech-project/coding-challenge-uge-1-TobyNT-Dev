@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DungeonCrawler")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1cc8ba7c7bfbe81fea6b0efe765db3d04d22f7f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff89d61582ceecf5bf6d55f592cc421a6c42a367")]
 [assembly: System.Reflection.AssemblyProductAttribute("DungeonCrawler")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DungeonCrawler")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
