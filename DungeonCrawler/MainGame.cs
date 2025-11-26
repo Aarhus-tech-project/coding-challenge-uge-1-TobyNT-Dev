@@ -1,35 +1,94 @@
 ﻿using System.CodeDom.Compiler;
+using System.Net.Mail;
 
 namespace DungeonCrawler
 {
     internal class MainGame
     {
-        int width = 64;
-        int height = 24;
+        private int width = 64;
+        private int height = 24;
 
-        Random rnd = new Random();
+        private Random rnd = new Random();
         //                0    1    2    3    4    5
-        char[] walls = { '═', '║', '╔', '╗', '╚', '╝' };
-        char[] floor = { '⋅' };
-        char[] loot = { '▣' };
-        char[] player = { '⚉' };
+        private char[] walls = { '═', '║', '╔', '╗', '╚', '╝' };
+        private char[] floor = { '⋅' };
+        private char[] loot = { '▣' };
+        private char[] player = { '⚉' };
 
-        int lootChance = 1000;
+        private int lootChance = 1000;
 
+        private bool playerActionPerformed = false;
+        
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             MainGame mainGame = new MainGame();
-            
+            bool gameEnd = false;
+
+
             mainGame.RunGame();
+            while (!gameEnd) 
+            { 
+                if (Console.ReadKey().Key == ConsoleKey.Backspace)
+                {
+                    gameEnd = true;
+                }
+            }
         }
 
 
-        void RunGame()
+        private void RunGame()
         {
             GenerateDungeon();
+            SpawnPlayer();
+
+            RunGameLoop();
         }
 
+        private void RunGameLoop()
+        {
+            if (playerActionPerformed)
+            {
+                //enemy move or attack
+            }
+            else if (!playerActionPerformed)
+            {
+                PlayerAction();
+            }
+        }
+
+        private void PlayerAction()
+        {
+            while (!playerActionPerformed)
+            {
+                if (Console.ReadKey().Key == ConsoleKey.UpArrow || Console.ReadKey().Key == ConsoleKey.DownArrow || 
+                    Console.ReadKey().Key == ConsoleKey.LeftArrow || Console.ReadKey().Key == ConsoleKey.RightArrow)
+                {
+                    //move player in direction pressed
+                }
+                if (Console.ReadKey().Key == ConsoleKey.Spacebar)
+                {
+                    //Player Attack
+                }
+                if (Console.ReadKey().Key == ConsoleKey.I)
+                {
+                    //Show player Inventory [Not An Action]
+                }
+                if (Console.ReadKey().Key == ConsoleKey.E)
+                {
+                    //Open Chest / Interact with Special Tiles
+                }
+            }
+        }
+
+        private void SpawnPlayer()
+        {
+            int spawnX = new Random().Next(2, width - 2);
+            int spawnZ = new Random().Next(2, height - 2);
+
+            Console.SetCursorPosition(spawnX, spawnZ);
+            Console.Write(player[0]);
+        }
         private void GenerateDungeon()
         {
             for (int w = 1; w <= width; w++)
@@ -74,11 +133,12 @@ namespace DungeonCrawler
                     }
                     else
                     {
-                        int rndGrass = rnd.Next(0, floor.Length);
+                        int rndFloor = rnd.Next(0, floor.Length);
                         Console.SetCursorPosition(w, h);
-                        Console.Write(floor[rndGrass]);
+                        Console.Write(floor[rndFloor]);
                     }
                 }
+                Thread.Sleep(15);
             }
         }
     }
