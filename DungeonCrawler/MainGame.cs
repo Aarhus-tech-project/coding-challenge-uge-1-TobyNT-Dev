@@ -61,10 +61,22 @@ namespace DungeonCrawler
         {
             while (!playerActionPerformed)
             {
-                if (Console.ReadKey().Key == ConsoleKey.UpArrow || Console.ReadKey().Key == ConsoleKey.DownArrow || 
-                    Console.ReadKey().Key == ConsoleKey.LeftArrow || Console.ReadKey().Key == ConsoleKey.RightArrow)
+                switch (Console.ReadKey().Key)
                 {
-                    //move player in direction pressed
+                    case ConsoleKey.UpArrow:
+                        MovePlayer("up");
+                        break;
+                    case ConsoleKey.DownArrow:
+                        MovePlayer("down");
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        MovePlayer("left");
+                        break;
+                    case ConsoleKey.RightArrow:
+                        MovePlayer("right");
+                        break;
+                    default:
+                        break;
                 }
                 if (Console.ReadKey().Key == ConsoleKey.Spacebar)
                 {
@@ -81,6 +93,25 @@ namespace DungeonCrawler
             }
         }
 
+        private void MovePlayer(string direction)
+        {
+            if (direction == "up")
+            {
+                //player position up
+            }
+            if (direction == "down")
+            {
+                //player position down
+            }
+            if (direction == "left")
+            {
+                //player position left
+            }
+            if (direction == "right")
+            {
+                //player position right
+            }
+        }
         private void SpawnPlayer()
         {
             int spawnX = new Random().Next(2, width - 2);
