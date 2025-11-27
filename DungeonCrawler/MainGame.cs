@@ -95,21 +95,26 @@ namespace DungeonCrawler
 
         private void MovePlayer(string direction)
         {
+            Console.SetCursorPosition(12, height + 3);
             if (direction == "up")
             {
                 //player position up
+                Console.WriteLine("player Up");
             }
             if (direction == "down")
             {
                 //player position down
+                Console.WriteLine("player down");
             }
             if (direction == "left")
             {
                 //player position left
+                Console.WriteLine("player left");
             }
             if (direction == "right")
             {
                 //player position right
+                Console.WriteLine("player right");
             }
         }
         private void SpawnPlayer()

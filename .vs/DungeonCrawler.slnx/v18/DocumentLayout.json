@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\",
+  "WorkspaceRootPath": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\tntde\\documents\\github\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\thymu\\documents\\repositories\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|solutionrelative:dungeoncrawler\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainGame.cs",
-              "DocumentMoniker": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\MainGame.cs",
+              "DocumentMoniker": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\MainGame.cs",
               "RelativeDocumentMoniker": "DungeonCrawler\\MainGame.cs",
-              "ToolTip": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\MainGame.cs",
+              "ToolTip": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\MainGame.cs",
               "RelativeToolTip": "DungeonCrawler\\MainGame.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAADwv28AAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAqwGoAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T12:11:04.276Z",
               "EditorCaption": ""
