@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonCrawler.csproj": {}
+    "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonCrawler.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonCrawler.csproj": {
+    "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonCrawler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonCrawler.csproj",
+        "projectUniqueName": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonCrawler.csproj",
         "projectName": "DungeonCrawler",
-        "projectPath": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonCrawler.csproj",
-        "packagesPath": "C:\\Users\\thymu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\obj\\",
+        "projectPath": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonCrawler.csproj",
+        "packagesPath": "C:\\Users\\tntde\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\thymu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tntde\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
