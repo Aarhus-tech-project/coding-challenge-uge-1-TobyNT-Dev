@@ -19,6 +19,7 @@
 
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             MainGame game = new MainGame();
