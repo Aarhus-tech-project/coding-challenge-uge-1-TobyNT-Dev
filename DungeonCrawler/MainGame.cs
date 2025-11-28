@@ -17,6 +17,11 @@
         private int playerX;
         private int playerZ;
 
+        int goldCollected = 0;
+        int playerDamage = 1;
+        int playerHP = 100;
+        int playerKills = 0;
+
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
@@ -95,6 +100,17 @@
 
             Console.SetCursorPosition(playerX, playerZ);
             Console.Write(playerChr[0]);
+        }
+
+        private void UpdateStats(int gold, int dmg, int hp, int kills)
+        {
+            
+            goldCollected += gold;
+            playerDamage += dmg;
+            playerHP += hp;
+            playerKills += kills;
+            Console.SetCursorPosition(0, height + 1);
+            Console.WriteLine($"[ Gold Collected: {goldCollected.ToString()} ] - [ Damage: {playerDamage.ToString()} ] - [ Health Points: {playerHP.ToString()} ] - [ Kills: {playerKills.ToString()} ]");
         }
 
         private void GenerateDungeon()
