@@ -7,23 +7,21 @@
 
         private Random rnd = new Random();
 
-        private char[] walls = { '═', '║', '╔', '╗', '╚', '╝' };
-        private char[] floor = { '·' };
-        private char[] loot = { '*' };
-        private char[] playerChr = { '⚉' };
-
-        private int lootChance = 100;
+        public char[] floor = { '·' };
+        private char[] playerChr = { '☺' };
 
         private int playerX;
         private int playerZ;
 
-        int playerLevel = 0;
-        int goldCollected = 0;
-        int playerDamage = 1;
-        int playerHP = 100;
-        int playerKills = 0;
+        private int playerLevel = 0;
+        private int goldCollected = 0;
+        private int playerDamage = 1;
+        private int playerHP = 100;
+        private int playerKills = 0;
 
-        List<Loot> droppedLoot = new List<Loot>();
+        private bool playersTurn = true;
+
+        public DungeonLayout dungeonLayout;
 
         static void Main(string[] args)
         {
@@ -37,7 +35,8 @@
         public void RunGame()
         {
             Console.Clear();
-            GenerateDungeon();
+            DungeonGenerator generator = new();
+            dungeonLayout = generator.GenerateDungeon(width, height);
             SpawnPlayer();
 
             GameLoop();
@@ -47,31 +46,43 @@
         {
             while (true)
             {
-                ConsoleKey key = Console.ReadKey(true).Key;
-
-                switch (key)
+                if (playersTurn)
                 {
-                    case ConsoleKey.UpArrow: MovePlayer(0, -1); break;
-                    case ConsoleKey.DownArrow: MovePlayer(0, 1); break;
-                    case ConsoleKey.LeftArrow: MovePlayer(-1, 0); break;
-                    case ConsoleKey.RightArrow: MovePlayer(1, 0); break;
+                    ConsoleKey key = Console.ReadKey(true).Key;
 
-                    case ConsoleKey.Spacebar:
-                        // Player attack
-                        break;
+                    switch (key)
+                    {
+                        case ConsoleKey.UpArrow: MovePlayer(0, -1); break;
+                        case ConsoleKey.DownArrow: MovePlayer(0, 1); break;
+                        case ConsoleKey.LeftArrow: MovePlayer(-1, 0); break;
+                        case ConsoleKey.RightArrow: MovePlayer(1, 0); break;
 
-                    case ConsoleKey.I:
-                        // Inventory
-                        break;
+                        case ConsoleKey.I:
+                            // Inventory
+                            break;
 
-                    case ConsoleKey.E:
-                        // Interact
-                        break;
+                        case ConsoleKey.E:
+                            // Interact
+                            break;
 
-                    case ConsoleKey.Backspace:
-                        return; // Quit game
+                        case ConsoleKey.Backspace:
+                            return; // Quit game
+                    }
+                }
+                else
+                {
+                    foreach (Enemy enemy in dungeonLayout.enemies)
+                    {
+                        enemy.TakeTurn(playerX, playerZ);
+                    }
+                    playersTurn = true;
                 }
             }
+        }
+
+        private bool AttackEnemy(Enemy enemy)
+        {
+            return true;
         }
 
         private void MovePlayer(int nextX, int nextZ)
@@ -85,6 +96,17 @@
                 newZ <= 1 || newZ >= height)
                 return; // can't move
 
+            // collision with enemy - dont move, but attack
+            foreach (Enemy enemy in dungeonLayout.enemies)
+            {
+                if (newX == enemy.positionX && newZ == enemy.positionZ)
+                {
+                    //attack enemy
+                    AttackEnemy(enemy);
+                    return;
+                }
+            }
+
             // erase old player
             Console.SetCursorPosition(playerX, playerZ);
             Console.Write(floor[0]);
@@ -97,16 +119,18 @@
 
             playerX = newX;
             playerZ = newZ;
+
+            playersTurn = false;
         }
 
         private void CheckGround(int newX, int newZ)
         {
-            for (int i = 0; i < droppedLoot.Count(); i++)
+            for (int i = 0; i < dungeonLayout.loot.Count(); i++)
             {
-                if (newX == droppedLoot[i].positionX && newZ == droppedLoot[i].positionZ)
+                if (newX == dungeonLayout.loot[i].positionX && newZ == dungeonLayout.loot[i].positionZ)
                 {
-                    UpdateStats(droppedLoot[i].goldAmount, 0, 0, 0, 0);
-                    droppedLoot.RemoveAt(i);
+                    UpdateStats(dungeonLayout.loot[i].goldAmount, 0, 0, 0, 0);
+                    dungeonLayout.loot.RemoveAt(i);
                     break;
                 }
             }
@@ -172,37 +196,6 @@
             {
                 Console.SetCursorPosition(0, height + 1);
                 Console.WriteLine($"                                             ");
-            }
-        }
-
-        private void GenerateDungeon()
-        {
-            for (int w = 1; w <= width; w++)
-            {
-                for (int h = 1; h <= height; h++)
-                {
-                    Console.SetCursorPosition(w, h);
-
-                    if (w == 1 && h == 1) Console.Write(walls[2]);
-
-                    else if (w == width && h == 1) Console.Write(walls[3]);
-
-                    else if (w == 1 && h == height) Console.Write(walls[4]);
-
-                    else if (w == width && h == height) Console.Write(walls[5]);
-
-                    else if (w == 1 || w == width) Console.Write(walls[1]);
-
-                    else if (h == 1 || h == height) Console.Write(walls[0]);
-
-                    else if (rnd.Next(0, lootChance) == 0)
-                    {
-                        Console.Write(loot[0]);
-                        droppedLoot.Add(new Loot(w, h));
-                    }
-
-                    else Console.Write(floor[0]);
-                }
             }
         }
     }
