@@ -17,10 +17,13 @@
         private int playerX;
         private int playerZ;
 
+        int playerLevel = 0;
         int goldCollected = 0;
         int playerDamage = 1;
         int playerHP = 100;
         int playerKills = 0;
+
+        List<Loot> droppedLoot = new List<Loot>();
 
         static void Main(string[] args)
         {
@@ -73,6 +76,7 @@
 
         private void MovePlayer(int nextX, int nextZ)
         {
+            UpdateStats(0, 0, 0, 0, 0);
             int newX = playerX + nextX;
             int newZ = playerZ + nextZ;
 
@@ -89,8 +93,24 @@
             Console.SetCursorPosition(newX, newZ);
             Console.Write(playerChr[0]);
 
+            CheckGround(newX, newZ);
+
             playerX = newX;
             playerZ = newZ;
+        }
+
+        private void CheckGround(int newX, int newZ)
+        {
+            for (int i = 0; i < droppedLoot.Count(); i++)
+            {
+                if (newX == droppedLoot[i].positionX && newZ == droppedLoot[i].positionZ)
+                {
+                    UpdateStats(droppedLoot[i].goldAmount, 0, 0, 0, 0);
+                    droppedLoot.RemoveAt(i);
+                    break;
+                }
+            }
+
         }
 
         private void SpawnPlayer()
@@ -102,15 +122,57 @@
             Console.Write(playerChr[0]);
         }
 
-        private void UpdateStats(int gold, int dmg, int hp, int kills)
+        private void UpdateStats(int gold, int dmg, int hp, int kills, int level)
         {
-            
             goldCollected += gold;
             playerDamage += dmg;
             playerHP += hp;
             playerKills += kills;
-            Console.SetCursorPosition(0, height + 1);
-            Console.WriteLine($"[ Gold Collected: {goldCollected.ToString()} ] - [ Damage: {playerDamage.ToString()} ] - [ Health Points: {playerHP.ToString()} ] - [ Kills: {playerKills.ToString()} ]");
+            playerLevel += level;
+            Console.SetCursorPosition(width + 2, 6);
+            Console.WriteLine($"Gold Collected: {goldCollected.ToString()}");
+            Console.SetCursorPosition(width + 2, 8);
+            Console.WriteLine($"Damage: {playerDamage.ToString()}");
+            Console.SetCursorPosition(width + 2, 10);
+            Console.WriteLine($"Health Points: {playerHP.ToString()}");
+            Console.SetCursorPosition(width + 2, 12);
+            Console.WriteLine($"Kills: {playerKills.ToString()}");
+
+            ShowMessage(gold, dmg, hp, kills);
+        }
+
+        private void ShowMessage(int gold, int dmg, int hp, int kills)
+        {
+            if (gold != 0)
+            {
+                Console.SetCursorPosition(0, height + 1);
+                Console.WriteLine($"You Found {gold} gold!");
+            }
+            else if (dmg != 0)
+            {
+                Console.SetCursorPosition(0, height + 1);
+                Console.WriteLine($"Your Physical Damage increased by {dmg}");
+            }
+            else if (hp > 0)
+            {
+                Console.SetCursorPosition(0, height + 1);
+                Console.WriteLine($"You Gained {hp} Health Points!");
+            }
+            else if (hp < 0)
+            {
+                Console.SetCursorPosition(0, height + 1);
+                Console.WriteLine($"You took {hp} damage!");
+            }
+            else if (kills > 0)
+            {
+                Console.SetCursorPosition(0, height + 1);
+                Console.WriteLine($"boi what the hell boi");
+            }
+            else
+            {
+                Console.SetCursorPosition(0, height + 1);
+                Console.WriteLine($"                                             ");
+            }
         }
 
         private void GenerateDungeon()
@@ -122,19 +184,23 @@
                     Console.SetCursorPosition(w, h);
 
                     if (w == 1 && h == 1) Console.Write(walls[2]);
-                    
+
                     else if (w == width && h == 1) Console.Write(walls[3]);
 
                     else if (w == 1 && h == height) Console.Write(walls[4]);
-                    
+
                     else if (w == width && h == height) Console.Write(walls[5]);
-                    
+
                     else if (w == 1 || w == width) Console.Write(walls[1]);
-                    
+
                     else if (h == 1 || h == height) Console.Write(walls[0]);
-                    
-                    else if (rnd.Next(0, lootChance) == 0) Console.Write(loot[0]);
-                    
+
+                    else if (rnd.Next(0, lootChance) == 0)
+                    {
+                        Console.Write(loot[0]);
+                        droppedLoot.Add(new Loot(w, h));
+                    }
+
                     else Console.Write(floor[0]);
                 }
             }
