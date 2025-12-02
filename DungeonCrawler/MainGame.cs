@@ -82,37 +82,5 @@ namespace DungeonCrawler
                 }
             }
         }
-
-        public int[] MoveEnemyTowardPlayer(int positionX, int positionZ, int absDistX, int absDistZ, int dirX, int dirZ, int newX, int newZ, char monsterType, List<Enemy> enemiesblocking)
-        {
-            bool canMove = true;
-            //Go in direction (either on x+, x-, z+, or z-)
-            if (absDistX >= absDistZ)
-            {
-                newX += dirX;
-            }
-            else
-            {
-                newZ += dirZ;
-            }
-            foreach (Enemy enemy in enemiesblocking)
-            {
-                if (enemy.positionX == newX && enemy.positionZ == newZ)
-                {
-                    canMove = false;
-                }
-            }
-            if (canMove) return[positionX, positionZ];
-
-            //overwrite old location
-            ConsoleHelper.WriteAt(positionX, positionZ, floor[0]);
-
-            //write new location
-            ConsoleHelper.WriteAt(newX, newZ, monsterType);
-
-            positionX = newX;
-            positionZ = newZ;
-            return [positionX, positionZ];
-        }
     }
 }

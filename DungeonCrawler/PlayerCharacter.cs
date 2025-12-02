@@ -31,6 +31,11 @@ namespace DungeonCrawler
             return true;
         }
 
+        public void TakeDamage(int damage)
+        {
+            hud.UpdateStats(mapWidth, mapHeight, 0, damage, 0, 0);
+        }
+
         public int[] MovePlayer(int nextX, int nextZ)
         {
 
@@ -73,7 +78,7 @@ namespace DungeonCrawler
             {
                 if (newX == dungeonLayout.loot[i].positionX && newZ == dungeonLayout.loot[i].positionZ)
                 {
-                    hud.UpdateStats(mapWidth, mapHeight, dungeonLayout.loot[i].goldAmount, 0, 0, 0, 0);
+                    hud.UpdateStats(mapWidth, mapHeight, dungeonLayout.loot[i].goldAmount, 0, 0, 0);
                     dungeonLayout.loot.RemoveAt(i);
                     break;
                 }
@@ -92,7 +97,7 @@ namespace DungeonCrawler
 
             ConsoleHelper.WriteAt(locationX, locationZ, playerChr[0]);
 
-            hud.UpdateStats(mapWidth, mapHeight, 0, 0, 0, 0, 0);
+            hud.UpdateStats(mapWidth, mapHeight, 0, 0, 0, 0);
         }
     }
 }

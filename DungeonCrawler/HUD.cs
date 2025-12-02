@@ -12,31 +12,26 @@ namespace DungeonCrawler
         int playerLevel;
 
         //Update Stats, and write in hud
-        public void UpdateStats(int width, int height, int gold, int dmg, int hp, int kills, int level)
+        public void UpdateStats(int width, int height, int gold,  int hp, int kills, int level)
         {
             goldCollected += gold;
-            playerDamage += dmg;
             playerHP += hp;
             playerKills += kills;
             playerLevel += level;
             
 
-            ShowMessage(height, gold, dmg, hp, kills);
+            ShowMessage(height, gold, hp, kills);
 
             GenerateHudBox(width);
         }
 
         //Status message generator
-        private void ShowMessage(int height, int gold, int dmg, int hp, int kills)
+        private void ShowMessage(int height, int gold, int hp, int kills)
         {
             height++;
             if (gold != 0)
             {
                 ConsoleHelper.WriteAt(0, height, $"You Found {gold} gold!");
-            }
-            else if (dmg != 0)
-            {
-                ConsoleHelper.WriteAt(0, height, $"Your Physical Damage increased by {dmg}");
             }
             else if (hp > 0)
             {
@@ -60,12 +55,11 @@ namespace DungeonCrawler
         {
             // write stats
             ConsoleHelper.WriteAt(width + 2, 6,  $" Gold Collected: {goldCollected}");
-            ConsoleHelper.WriteAt(width + 2, 8,  $" Damage: {playerDamage}");
-            ConsoleHelper.WriteAt(width + 2, 10, $" Health Points: {playerHP}");
-            ConsoleHelper.WriteAt(width + 2, 12, $" Kills: {playerKills}");
+            ConsoleHelper.WriteAt(width + 2, 8, $" Health Points: {playerHP}");
+            ConsoleHelper.WriteAt(width + 2, 10, $" Kills: {playerKills}");
 
             // generate box around stats
-            GenerateBox(30, 10, width + 1, 4);
+            GenerateBox(30, 8, width + 1, 4);
         }
         private static void GenerateBox(int width, int height, int offsetLeft, int offsetTop)
         {
