@@ -21,7 +21,8 @@
 
         private bool playersTurn = true;
 
-        public DungeonLayout dungeonLayout;
+        public List<Enemy> enemyList = new();
+        public List<Loot> lootList = new();
 
         static void Main(string[] args)
         {
@@ -36,7 +37,9 @@
         {
             Console.Clear();
             DungeonGenerator generator = new();
-            dungeonLayout = generator.GenerateDungeon(width, height);
+            DungeonLayout dungeonLayout = generator.GenerateDungeon(width, height, this);
+            enemyList = dungeonLayout.enemies;
+            lootList = dungeonLayout.loot;
             SpawnPlayer();
 
             GameLoop();
@@ -71,7 +74,7 @@
                 }
                 else
                 {
-                    foreach (Enemy enemy in dungeonLayout.enemies)
+                    foreach (Enemy enemy in enemyList)
                     {
                         enemy.TakeTurn(playerX, playerZ);
                     }
@@ -80,14 +83,49 @@
             }
         }
 
-        private bool AttackEnemy(Enemy enemy)
+        private void AttackEnemy(Enemy enemy)
         {
-            return true;
+            int attackDamage = 0;
+            string hitText = string.Empty;
+            int rndNum = rnd.Next(0, 101);
+            switch (rndNum)
+            {
+                // 0–49  (50% chance) Attack missed
+                case < 50:
+                    attackDamage = 0; // 0 dmg
+                    hitText = "Your attack missed!";
+                    break;
+                // 50–74 (25% chance) normal attack hit
+                case < 75:
+                    attackDamage = rnd.Next(16, 20);
+                    hitText = "You did a weak attack!";
+                    break;
+                // 75–89 (15% chance) strong attack hit
+                case < 90:
+                    attackDamage = rnd.Next(21, 30);
+                    hitText = "You did a strong attack!";
+                    break;
+                // 90–98 (9% chance) very strong attack hit
+                case < 99:
+                    attackDamage = rnd.Next(31, 50);
+                    hitText = "You did a super strong attack!";
+                    break;
+                // 100 (1% chance) critical attack hit
+                case 100:
+                    attackDamage = rnd.Next(51, 101);
+                    hitText = "You did a critical hit attack!";
+                    break;
+            }
+            enemy.DamageEnemy(attackDamage * -1);
+            playersTurn = false;
+            UpdateStats(0, $"{hitText} {attackDamage} damage was done!   ", 0, 0, 0, true);
         }
-
+        public void DeleteEnemy(Enemy toDelete)
+        {
+            enemyList.Remove(toDelete);
+        }
         private void MovePlayer(int nextX, int nextZ)
         {
-            UpdateStats(0, 0, 0, 0, 0);
             int newX = playerX + nextX;
             int newZ = playerZ + nextZ;
 
@@ -97,7 +135,7 @@
                 return; // can't move
 
             // collision with enemy - dont move, but attack
-            foreach (Enemy enemy in dungeonLayout.enemies)
+            foreach (Enemy enemy in enemyList)
             {
                 if (newX == enemy.positionX && newZ == enemy.positionZ)
                 {
@@ -115,6 +153,8 @@
             Console.SetCursorPosition(newX, newZ);
             Console.Write(playerChr[0]);
 
+            UpdateStats(0, string.Empty, 0, 0, 0, true);
+
             CheckGround(newX, newZ);
 
             playerX = newX;
@@ -125,12 +165,20 @@
 
         private void CheckGround(int newX, int newZ)
         {
-            for (int i = 0; i < dungeonLayout.loot.Count(); i++)
+            for (int i = 0; i < lootList.Count(); i++)
             {
-                if (newX == dungeonLayout.loot[i].positionX && newZ == dungeonLayout.loot[i].positionZ)
+                if (newX == lootList[i].positionX && newZ == lootList[i].positionZ)
                 {
-                    UpdateStats(dungeonLayout.loot[i].goldAmount, 0, 0, 0, 0);
-                    dungeonLayout.loot.RemoveAt(i);
+                    if (lootList[i].isPotion)
+                    {
+                        UpdateStats(0, string.Empty, lootList[i].healingAmount, 0, 0, true);
+                        lootList.RemoveAt(i);
+                    }
+                    else
+                    {
+                        UpdateStats(lootList[i].goldAmount, string.Empty, 0, 0, 0, true);
+                        lootList.RemoveAt(i);
+                    }
                     break;
                 }
             }
@@ -146,56 +194,64 @@
             Console.Write(playerChr[0]);
         }
 
-        private void UpdateStats(int gold, int dmg, int hp, int kills, int level)
+        public void DamagePlayer(int damageTaken)
+        {
+            UpdateStats(0, string.Empty, damageTaken * -1, 0, 0, false);
+        }
+
+        public void UpdateStats(int gold, string dmg, int hp, int kills, int level, bool showMsg)
         {
             goldCollected += gold;
-            playerDamage += dmg;
             playerHP += hp;
             playerKills += kills;
             playerLevel += level;
-            Console.SetCursorPosition(width + 2, 6);
-            Console.WriteLine($"Gold Collected: {goldCollected.ToString()}");
             Console.SetCursorPosition(width + 2, 8);
-            Console.WriteLine($"Damage: {playerDamage.ToString()}");
+            Console.WriteLine($"Gold Collected: {goldCollected.ToString()}   ");
             Console.SetCursorPosition(width + 2, 10);
-            Console.WriteLine($"Health Points: {playerHP.ToString()}");
+            Console.WriteLine($"Health Points: {playerHP.ToString()}   ");
             Console.SetCursorPosition(width + 2, 12);
-            Console.WriteLine($"Kills: {playerKills.ToString()}");
+            Console.WriteLine($"Kills: {playerKills.ToString()}    ");
 
-            ShowMessage(gold, dmg, hp, kills);
+            if (showMsg)
+            {
+                ShowMessage(gold, dmg, hp, kills);
+            }
+            if (playerHP < 0)
+            {
+                Console.Clear();
+                Console.SetCursorPosition(30, 10);
+                Console.WriteLine("you died...");
+                Console.SetCursorPosition(10, 11);
+                Console.WriteLine($"You collected a total of {goldCollected} gold!");
+            }
         }
 
-        private void ShowMessage(int gold, int dmg, int hp, int kills)
+        private void ShowMessage(int gold, string dmg, int hp, int kills)
         {
             if (gold != 0)
             {
                 Console.SetCursorPosition(0, height + 1);
-                Console.WriteLine($"You Found {gold} gold!");
+                Console.WriteLine($"You Found {gold} gold!     ");
             }
-            else if (dmg != 0)
+            else if (dmg != string.Empty)
             {
                 Console.SetCursorPosition(0, height + 1);
-                Console.WriteLine($"Your Physical Damage increased by {dmg}");
+                Console.WriteLine($"{dmg}        ");
             }
             else if (hp > 0)
             {
                 Console.SetCursorPosition(0, height + 1);
-                Console.WriteLine($"You Gained {hp} Health Points!");
-            }
-            else if (hp < 0)
-            {
-                Console.SetCursorPosition(0, height + 1);
-                Console.WriteLine($"You took {hp} damage!");
+                Console.WriteLine($"This potion gave {Math.Abs(hp)} Health Points!           ");
             }
             else if (kills > 0)
             {
-                Console.SetCursorPosition(0, height + 1);
-                Console.WriteLine($"boi what the hell boi");
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine($"You defeated the enemy!                         ");
             }
             else
             {
                 Console.SetCursorPosition(0, height + 1);
-                Console.WriteLine($"                                             ");
+                Console.WriteLine($"                                                             ");
             }
         }
     }

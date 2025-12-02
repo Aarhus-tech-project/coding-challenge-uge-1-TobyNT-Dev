@@ -1,7 +1,0 @@
-﻿namespace DungeonCrawler
-{
-    class PlayerCharacter
-    {
-
-    }
-}

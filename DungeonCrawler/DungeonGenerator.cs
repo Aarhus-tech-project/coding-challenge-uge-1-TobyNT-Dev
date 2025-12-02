@@ -4,17 +4,17 @@
     {
         public char[] walls = { '═', '║', '╔', '╗', '╚', '╝' };
         public char[] floor = { '·' };
-        public char[] loot = { '*' };
+        public char[] loot = { '*', '☤' };
 
         private Random rnd = new Random();
         
         private int lootChance = 100;
-        private int enemyChance = 100;
+        private int enemyChance = 500;
 
         private List<Loot> generatorLoot = [];
         private List<Enemy> generatorEnemies = [];
 
-        public DungeonLayout GenerateDungeon(int width, int height)
+        public DungeonLayout GenerateDungeon(int width, int height, MainGame gameReference)
         {
             for (int w = 1; w <= width; w++)
             {
@@ -36,12 +36,19 @@
 
                     else if (rnd.Next(0, lootChance) == 0)
                     {
-                        Console.Write(loot[0]);
-                        generatorLoot.Add(new Loot(w, h));
+                        Loot lootGenerated = new Loot(w, h);
+                        if (lootGenerated.isPotion)
+                        {
+                            Console.Write(loot[1]);
+                        } else
+                        {
+                            Console.Write(loot[0]);
+                        }
+                        generatorLoot.Add(lootGenerated);
                     }
                     else if (rnd.Next(0, enemyChance) == 0)
                     {
-                        Enemy enemy = new Enemy(w, h);
+                        Enemy enemy = new Enemy(w, h, gameReference);
                         generatorEnemies.Add(enemy);
                         Console.Write(enemy.monsterType.ToString());
                     }
