@@ -1,11 +1,10 @@
-﻿using System.Linq;
-
-namespace DungeonCrawler
+﻿namespace DungeonCrawler
 {
     internal class Enemy
     {
         private Random rnd = new Random();
         MainGame main = new();
+        PlayerCharacter player = new();
 
         char[] monsterTypes = { 'Z' };
 
@@ -22,27 +21,53 @@ namespace DungeonCrawler
             positionZ = _positionZ;
             monsterType = monsterTypes[rnd.Next(0, monsterTypes.Length)];
         }
-        public void TakeTurn(int playerX, int playerZ)
+        public void TakeTurn(int playerX, int playerZ, List<Enemy> enemies)
         {
             int newX = positionX;
             int newZ = positionZ;
 
-            int directionX = playerX - positionX;
-            int directionZ = playerZ - positionZ;
-            //is player within detection range
-            if (Math.Abs(directionX) < detectionDistance || Math.Abs(directionZ) < detectionDistance)
-            {
-                MoveTowardPlayer(directionX, directionZ, newX, newZ);
-            }
-            //is player close enough to attack
-            else if (playerX == positionX + 1 || playerX == positionX - 1 || playerZ == positionZ + 1 || playerZ == positionZ - 1)
+            // Coordinate distance between me (enemy) and player
+            int distX = playerX - positionX;
+            int distZ = playerZ - positionZ;
+
+            // absolute distance between me (enemy) and player
+            int absDistX = Math.Abs(distX);
+            int absDistZ = Math.Abs(distZ);
+
+            // direction player is in
+            int dirX = Math.Sign(distX);
+            int dirZ = Math.Sign(distZ);
+
+            
+
+            //if player is close enough to attack
+            if (absDistX <= 1 || absDistZ <= 1)
             {
                 AttackPlayer();
             }
+            //if player is within detection range [ Math.Abs -> negative numbers = positive]
+            else if (absDistX < detectionDistance || absDistZ < detectionDistance)
+            {
+                List<Enemy> enemiesBlocked = CheckForBlockedTiles(enemies);
+
+                int[] positions = main.MoveEnemyTowardPlayer(positionX, positionZ, absDistX, absDistZ, dirX, dirZ, newX, newZ, monsterType, enemiesBlocked);
+                positionX = positions[0];
+                positionZ = positions[1];
+            }
+            //if not, do noting
             else
             {
                 return;
             }
+        }
+
+        private List<Enemy> CheckForBlockedTiles(List<Enemy> enemies)
+        {
+            List<Enemy> enemiesBlocking = enemies.Where(item => item.positionX == positionX++ && item.positionZ == positionZ ||
+                                                                item.positionX == positionX-- && item.positionZ == positionZ ||
+                                                                item.positionZ == positionZ++ && item.positionX == positionX ||
+                                                                item.positionZ == positionZ-- && item.positionX == positionX).ToList();
+            return enemiesBlocking;
         }
 
         private void AttackPlayer()
@@ -75,27 +100,6 @@ namespace DungeonCrawler
                     break;
             }
             //attack player
-        }
-
-        private void MoveTowardPlayer(int directionX, int directionZ, int newX, int newZ)
-        {
-            if (rnd.Next(0, 2) == 0)
-            {
-                newX += Math.Sign(directionX);
-            }
-            else
-            {
-                newZ += Math.Sign(directionZ);
-            }
-
-            Console.SetCursorPosition(positionX, positionZ);
-            Console.Write(main.floor[0]);
-
-            Console.SetCursorPosition(newX, newZ);
-            Console.Write(monsterType.ToString());
-
-            positionX = newX;
-            positionZ = newZ;
         }
     }
 }
