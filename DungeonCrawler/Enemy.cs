@@ -121,36 +121,37 @@ namespace DungeonCrawler
                 newZ += Math.Sign(directionZ);
             }
 
-            //foreach (Loot loot in main.lootList)
-            //{
-            //    if (loot.positionX == positionX && loot.positionZ == positionZ)
-            //    {
-            //        if (loot.isPotion)
-            //        {
-            //            Console.SetCursorPosition(positionX, positionZ);
-            //            Console.ForegroundColor = ConsoleColor.Blue;
-            //            Console.Write(main.floor[0]);
-            //        }
-            //        else
-            //        {
-            //            Console.SetCursorPosition(positionX, positionZ);
-            //            Console.ForegroundColor = ConsoleColor.Yellow;
-            //            Console.Write(main.floor[0]);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Console.SetCursorPosition(positionX, positionZ);
-            //        Console.Write(main.floor[0]);
-            //    }
-            //}
-
-            Console.SetCursorPosition(positionX, positionZ);
-            Console.Write(main.floor[0]);
+            foreach (Loot loot in main.lootList)
+            {
+                if (loot.positionX == positionX && loot.positionZ == positionZ)
+                {
+                    if (loot.isPotion)
+                    {
+                        Console.SetCursorPosition(positionX, positionZ);
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(main.loot[1]);
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(positionX, positionZ);
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write(main.loot[0]);
+                    }
+                }
+                else
+                {
+                    Console.SetCursorPosition(positionX, positionZ);
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write(main.floor[0]);
+                }
+                Console.ResetColor();
+            }
 
 
             Console.SetCursorPosition(newX, newZ);
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Write(monsterType.ToString());
+            Console.ResetColor();
 
             positionX = newX;
             positionZ = newZ;

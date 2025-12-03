@@ -2,8 +2,8 @@
 {
     internal class MainGame
     {
-        public int width = 96;
-        public int height = 32;
+        public int width = 64;
+        public int height = 24;
 
         private Random rnd = new Random();
 
@@ -58,7 +58,7 @@
         {
             while (playerAlive)
             {
-                if (playersTurn)
+                if (playersTurn && playerAlive)
                 {
                     ConsoleKey key = Console.ReadKey(true).Key;
 
@@ -78,7 +78,7 @@
                         //    break;
                     }
                 }
-                else
+                else if (playerAlive)
                 {
                     foreach (Enemy enemy in enemyList)
                     {
@@ -154,11 +154,15 @@
 
             // erase old player
             Console.SetCursorPosition(playerX, playerZ);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write(floor[0]);
+            Console.ResetColor();
 
             // draw new player
             Console.SetCursorPosition(newX, newZ);
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Write(playerChr[0]);
+            Console.ResetColor();
 
             UpdateStats(0, string.Empty, 0, 0, 0, true);
 
@@ -229,11 +233,21 @@
             {
                 playerAlive = false;
                 Console.Clear();
+                Thread.Sleep(1500);
                 Console.SetCursorPosition(20, 10);
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("You died...");
+
+                Thread.Sleep(1500);
+
                 Console.SetCursorPosition(20, 11);
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine($"You collected a total of {goldCollected} gold!");
+
+                Thread.Sleep(1500);
+
                 Console.SetCursorPosition(20, 12);
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine($"You slayed {playerKills} foes!");
             }
         }

@@ -3,7 +3,7 @@
     class DungeonGenerator
     {
         private Random rnd = new Random();
-        
+
         private int lootChance = 100;
         private int enemyChance = 300;
 
@@ -18,26 +18,47 @@
                 {
                     Console.SetCursorPosition(w, h);
 
-                    if (w == 1 && h == 1) Console.Write(gameReference.walls[2]);
+                    if (w == 1 && h == 1)
+                    {
+                        Console.Write(gameReference.walls[2]);
+                    }
 
-                    else if (w == width && h == 1) Console.Write(gameReference.walls[3]);
+                    else if (w == width && h == 1)
+                    {
+                        Console.Write(gameReference.walls[3]);
+                    }
 
-                    else if (w == 1 && h == height) Console.Write(gameReference.walls[4]);
+                    else if (w == 1 && h == height)
+                    {
+                        Console.Write(gameReference.walls[4]);
+                    }
 
-                    else if (w == width && h == height) Console.Write(gameReference.walls[5]);
+                    else if (w == width && h == height)
+                    {
+                        Console.Write(gameReference.walls[5]);
+                    }
 
-                    else if (w == 1 || w == width) Console.Write(gameReference.walls[1]);
+                    else if (w == 1 || w == width)
+                    {
+                        Console.Write(gameReference.walls[1]);
+                    }
 
-                    else if (h == 1 || h == height) Console.Write(gameReference.walls[0]);
+                    else if (h == 1 || h == height)
+                    {
+                        Console.Write(gameReference.walls[0]);
+                    }
 
                     else if (rnd.Next(0, lootChance) == 0)
                     {
                         Loot lootGenerated = new Loot(w, h);
                         if (lootGenerated.isPotion)
                         {
+                            Console.ForegroundColor = ConsoleColor.Blue;
                             Console.Write(gameReference.loot[1]);
-                        } else
+                        }
+                        else
                         {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.Write(gameReference.loot[0]);
                         }
                         generatorLoot.Add(lootGenerated);
@@ -46,10 +67,15 @@
                     {
                         Enemy enemy = new Enemy(w, h, gameReference);
                         generatorEnemies.Add(enemy);
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write(enemy.monsterType.ToString());
                     }
-
-                    else Console.Write(gameReference.floor[0]);
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.Write(gameReference.floor[0]);
+                    }
+                    Console.ResetColor();
                 }
             }
             DungeonLayout layout = new DungeonLayout(generatorLoot, generatorEnemies);
