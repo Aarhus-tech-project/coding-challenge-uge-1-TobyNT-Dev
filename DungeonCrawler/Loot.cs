@@ -20,8 +20,16 @@
             }
             else
             {
-                healingAmount = rnd.Next(1, 50);
-                isPotion = true;
+                if (rnd.Next(0, 6) == 0)
+                {
+                    healingAmount = rnd.Next(20, 60) * -1;
+                    isPotion = true;
+                }
+                else
+                {
+                    healingAmount = rnd.Next(10, 50);
+                    isPotion = true;
+                }
             }
         }
     }

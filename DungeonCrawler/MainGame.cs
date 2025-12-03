@@ -2,13 +2,15 @@
 {
     internal class MainGame
     {
-        private int width = 64;
-        private int height = 24;
+        public int width = 96;
+        public int height = 32;
 
         private Random rnd = new Random();
 
         public char[] floor = { '·' };
         private char[] playerChr = { '☺' };
+        public char[] loot = { '*', '☤' };
+        public char[] walls = { '═', '║', '╔', '╗', '╚', '╝' };
 
         private int playerX;
         private int playerZ;
@@ -21,16 +23,23 @@
 
         private bool playersTurn = true;
 
+        private bool playerAlive = true;
+
         public List<Enemy> enemyList = new();
         public List<Loot> lootList = new();
 
         static void Main(string[] args)
         {
-            Console.CursorVisible = false;
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine("Press [ F11 ] to Maximize.");
+            Console.WriteLine("Press [ Spacebar ] to start game!");
+            if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
+            {
+                Console.CursorVisible = false;
+                Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            MainGame game = new MainGame();
-            game.RunGame();
+                MainGame game = new MainGame();
+                game.RunGame();
+            }
         }
 
         public void RunGame()
@@ -47,7 +56,7 @@
 
         private void GameLoop()
         {
-            while (true)
+            while (playerAlive)
             {
                 if (playersTurn)
                 {
@@ -60,16 +69,13 @@
                         case ConsoleKey.LeftArrow: MovePlayer(-1, 0); break;
                         case ConsoleKey.RightArrow: MovePlayer(1, 0); break;
 
-                        case ConsoleKey.I:
-                            // Inventory
-                            break;
+                        //case ConsoleKey.I:
+                        //    // Inventory
+                        //    break;
 
-                        case ConsoleKey.E:
-                            // Interact
-                            break;
-
-                        case ConsoleKey.Backspace:
-                            return; // Quit game
+                        //case ConsoleKey.E:
+                        //    // Interact
+                        //    break;
                     }
                 }
                 else
@@ -81,6 +87,7 @@
                     playersTurn = true;
                 }
             }
+            Console.ReadKey();
         }
 
         private void AttackEnemy(Enemy enemy)
@@ -91,7 +98,7 @@
             switch (rndNum)
             {
                 // 0–49  (50% chance) Attack missed
-                case < 50:
+                case < 35:
                     attackDamage = 0; // 0 dmg
                     hitText = "Your attack missed!";
                     break;
@@ -118,7 +125,7 @@
             }
             enemy.DamageEnemy(attackDamage * -1);
             playersTurn = false;
-            UpdateStats(0, $"{hitText} {attackDamage} damage was done!   ", 0, 0, 0, true);
+            UpdateStats(0, $"{hitText} {attackDamage} damage was done!                         ", 0, 0, 0, true);
         }
         public void DeleteEnemy(Enemy toDelete)
         {
@@ -192,6 +199,7 @@
 
             Console.SetCursorPosition(playerX, playerZ);
             Console.Write(playerChr[0]);
+            UpdateStats(0, string.Empty, 0, 0, 0, false);
         }
 
         public void DamagePlayer(int damageTaken)
@@ -203,26 +211,30 @@
         {
             goldCollected += gold;
             playerHP += hp;
+            if (playerHP > 100) playerHP = 100;
             playerKills += kills;
             playerLevel += level;
             Console.SetCursorPosition(width + 2, 8);
-            Console.WriteLine($"Gold Collected: {goldCollected.ToString()}   ");
+            Console.WriteLine($"Gold Collected: {goldCollected.ToString()}      ");
             Console.SetCursorPosition(width + 2, 10);
-            Console.WriteLine($"Health Points: {playerHP.ToString()}   ");
+            Console.WriteLine($"Health Points: {playerHP.ToString()}      ");
             Console.SetCursorPosition(width + 2, 12);
-            Console.WriteLine($"Kills: {playerKills.ToString()}    ");
+            Console.WriteLine($"Kills: {playerKills.ToString()}       ");
 
             if (showMsg)
             {
                 ShowMessage(gold, dmg, hp, kills);
             }
-            if (playerHP < 0)
+            if (playerHP <= 0)
             {
+                playerAlive = false;
                 Console.Clear();
-                Console.SetCursorPosition(30, 10);
-                Console.WriteLine("you died...");
-                Console.SetCursorPosition(10, 11);
+                Console.SetCursorPosition(20, 10);
+                Console.WriteLine("You died...");
+                Console.SetCursorPosition(20, 11);
                 Console.WriteLine($"You collected a total of {goldCollected} gold!");
+                Console.SetCursorPosition(20, 12);
+                Console.WriteLine($"You slayed {playerKills} foes!");
             }
         }
 
@@ -230,28 +242,33 @@
         {
             if (gold != 0)
             {
-                Console.SetCursorPosition(0, height + 1);
-                Console.WriteLine($"You Found {gold} gold!     ");
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine($"You Found {gold} gold!            ");
             }
             else if (dmg != string.Empty)
             {
-                Console.SetCursorPosition(0, height + 1);
+                Console.SetCursorPosition(0, 0);
                 Console.WriteLine($"{dmg}        ");
+            }
+            else if (hp < 0)
+            {
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine($"This potion contained poison, and did {Math.Abs(hp)} damage!               ");
             }
             else if (hp > 0)
             {
-                Console.SetCursorPosition(0, height + 1);
-                Console.WriteLine($"This potion gave {Math.Abs(hp)} Health Points!           ");
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine($"This potion gave {Math.Abs(hp)} Health Points!             ");
             }
             else if (kills > 0)
             {
-                Console.SetCursorPosition(0, 0);
-                Console.WriteLine($"You defeated the enemy!                         ");
+                Console.SetCursorPosition(0, height + 1);
+                Console.WriteLine($"You defeated the enemy!                             ");
             }
             else
             {
-                Console.SetCursorPosition(0, height + 1);
-                Console.WriteLine($"                                                             ");
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine($"                                                                                  ");
             }
         }
     }

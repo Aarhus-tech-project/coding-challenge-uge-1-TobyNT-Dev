@@ -1,25 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\",
+  "WorkspaceRootPath": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\thymu\\documents\\repositories\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|solutionrelative:dungeoncrawler\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\thymu\\documents\\repositories\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\dungeongenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|solutionrelative:dungeoncrawler\\dungeongenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\thymu\\documents\\repositories\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\loot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|solutionrelative:dungeoncrawler\\loot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\thymu\\documents\\repositories\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\tntde\\documents\\github\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|solutionrelative:dungeoncrawler\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\thymu\\documents\\repositories\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\dungeonlayout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\tntde\\documents\\github\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\dungeongenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|solutionrelative:dungeoncrawler\\dungeongenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\tntde\\documents\\github\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|solutionrelative:dungeoncrawler\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\tntde\\documents\\github\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\loot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|solutionrelative:dungeoncrawler\\loot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|c:\\users\\tntde\\documents\\github\\coding-challenge-uge-1-tobynt-dev\\dungeoncrawler\\dungeonlayout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAEEACE5-D6F7-F298-981E-C44E36EF3113}|DungeonCrawler\\DungeonCrawler.csproj|solutionrelative:dungeoncrawler\\dungeonlayout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -30,19 +30,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MainGame.cs",
-              "DocumentMoniker": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\MainGame.cs",
+              "DocumentMoniker": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\MainGame.cs",
               "RelativeDocumentMoniker": "DungeonCrawler\\MainGame.cs",
-              "ToolTip": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\MainGame.cs",
+              "ToolTip": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\MainGame.cs",
               "RelativeToolTip": "DungeonCrawler\\MainGame.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-28T09:25:18.078Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DungeonGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonGenerator.cs",
+              "RelativeDocumentMoniker": "DungeonCrawler\\DungeonGenerator.cs",
+              "ToolTip": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonGenerator.cs",
+              "RelativeToolTip": "DungeonCrawler\\DungeonGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T08:46:38.484Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -52,26 +66,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Loot.cs",
-              "DocumentMoniker": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\Loot.cs",
+              "DocumentMoniker": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\Loot.cs",
               "RelativeDocumentMoniker": "DungeonCrawler\\Loot.cs",
-              "ToolTip": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\Loot.cs",
+              "ToolTip": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\Loot.cs",
               "RelativeToolTip": "DungeonCrawler\\Loot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-01T07:18:45.648Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Enemy.cs",
-              "DocumentMoniker": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\Enemy.cs",
+              "DocumentMoniker": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\Enemy.cs",
               "RelativeDocumentMoniker": "DungeonCrawler\\Enemy.cs",
-              "ToolTip": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\Enemy.cs",
+              "ToolTip": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\Enemy.cs",
               "RelativeToolTip": "DungeonCrawler\\Enemy.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAwwFsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAH8AAAAAAAAAAADwv5EAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-01T09:37:25.958Z",
               "EditorCaption": ""
@@ -80,26 +94,13 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "DungeonLayout.cs",
-              "DocumentMoniker": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonLayout.cs",
+              "DocumentMoniker": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonLayout.cs",
               "RelativeDocumentMoniker": "DungeonCrawler\\DungeonLayout.cs",
-              "ToolTip": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonLayout.cs",
+              "ToolTip": "C:\\Users\\tntde\\Documents\\GitHub\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonLayout.cs",
               "RelativeToolTip": "DungeonCrawler\\DungeonLayout.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-01T12:41:35.68Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DungeonGenerator.cs",
-              "DocumentMoniker": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonGenerator.cs",
-              "RelativeDocumentMoniker": "DungeonCrawler\\DungeonGenerator.cs",
-              "ToolTip": "C:\\Users\\thymu\\Documents\\Repositories\\coding-challenge-uge-1-TobyNT-Dev\\DungeonCrawler\\DungeonGenerator.cs",
-              "RelativeToolTip": "DungeonCrawler\\DungeonGenerator.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwDcAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-01T08:46:38.484Z",
               "EditorCaption": ""
             }
           ]

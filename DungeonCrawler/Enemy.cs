@@ -14,7 +14,7 @@ namespace DungeonCrawler
 
         public char monsterType;
 
-        int detectionDistance = 8;
+        int detectionDistance = 9;
 
         int healthPoints = 100;
 
@@ -30,14 +30,21 @@ namespace DungeonCrawler
             int newX = positionX;
             int newZ = positionZ;
 
+            int distX = playerX - positionX;
+            int distZ = playerZ - positionZ;
+
             int absDistX = Math.Abs(playerX - positionX);
             int absDistZ = Math.Abs(playerZ - positionZ);
-            //is player within detection range
-            
+
             //is player close enough to attack
             if (absDistX <= 1 && absDistZ <= 1)
             {
                 AttackPlayer();
+            }
+            //is player within detection range
+            else if (absDistX < detectionDistance && absDistZ < detectionDistance)
+            {
+                MoveTowardPlayer(distX, distZ, newX, newZ);
             }
             else
             {
@@ -47,7 +54,7 @@ namespace DungeonCrawler
 
         private void AttackPlayer()
         {
-            Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(0, main.height + 1);
             Console.WriteLine("                                                             ");
             Thread.Sleep(500);
             //roll attack damage
@@ -63,28 +70,28 @@ namespace DungeonCrawler
                     break;
                 // 50–74 (25% chance) normal attack hit
                 case < 75:
-                    attackDamage = rnd.Next(10, 16); // 10–15 dmg
+                    attackDamage = rnd.Next(5, 10);
                     hitText = "Enemy hit you with a weak attack!";
                     break;
                 // 75–89 (15% chance) strong attack hit
                 case < 90:
-                    attackDamage = rnd.Next(15, 21); // 15–20 dmg
+                    attackDamage = rnd.Next(11, 15);
                     hitText = "Enemy hit you with a strong attack!";
                     break;
                 // 90–98 (9% chance) very strong attack hit
                 case < 99:
-                    attackDamage = rnd.Next(20, 31); // 20–30 dmg
+                    attackDamage = rnd.Next(16, 25);
                     hitText = "Enemy hit you with a super strong attack!";
                     break;
                 // 100 (1% chance) critical attack hit
                 case 100:
-                    attackDamage = rnd.Next(50, 101); // 50–100 dmg
+                    attackDamage = rnd.Next(26, 45);
                     hitText = "Enemy hit you with a critical hit attack!";
                     break;
             }
             //attack player
             main.DamagePlayer(attackDamage);
-            Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(0, main.height + 1);
             Console.WriteLine($"{hitText} You Took {attackDamage} damage.");
         }
 
@@ -114,8 +121,33 @@ namespace DungeonCrawler
                 newZ += Math.Sign(directionZ);
             }
 
+            //foreach (Loot loot in main.lootList)
+            //{
+            //    if (loot.positionX == positionX && loot.positionZ == positionZ)
+            //    {
+            //        if (loot.isPotion)
+            //        {
+            //            Console.SetCursorPosition(positionX, positionZ);
+            //            Console.ForegroundColor = ConsoleColor.Blue;
+            //            Console.Write(main.floor[0]);
+            //        }
+            //        else
+            //        {
+            //            Console.SetCursorPosition(positionX, positionZ);
+            //            Console.ForegroundColor = ConsoleColor.Yellow;
+            //            Console.Write(main.floor[0]);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Console.SetCursorPosition(positionX, positionZ);
+            //        Console.Write(main.floor[0]);
+            //    }
+            //}
+
             Console.SetCursorPosition(positionX, positionZ);
             Console.Write(main.floor[0]);
+
 
             Console.SetCursorPosition(newX, newZ);
             Console.Write(monsterType.ToString());
