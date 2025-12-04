@@ -9,6 +9,9 @@
         public int goldAmount;
         public bool isPotion;
         public int healingAmount;
+        public char visual;
+
+        private char[] lootVisual = { '*', '☤' };
         public Loot(int _positionX, int _positionZ)
         {
             positionX = _positionX;
@@ -17,6 +20,7 @@
             {
                 goldAmount = rnd.Next(1, 50);
                 isPotion = false;
+                visual = lootVisual[0];
             }
             else
             {
@@ -24,11 +28,13 @@
                 {
                     healingAmount = rnd.Next(20, 60) * -1;
                     isPotion = true;
+                    visual = lootVisual[1];
                 }
                 else
                 {
                     healingAmount = rnd.Next(10, 50);
                     isPotion = true;
+                    visual = lootVisual[1];
                 }
             }
         }
